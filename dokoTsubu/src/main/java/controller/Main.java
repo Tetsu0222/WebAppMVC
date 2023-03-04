@@ -58,7 +58,6 @@ public class Main extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding( "UTF-8" );
 		String text = request.getParameter( "text" );
 		
 		if( text != null && text.length() != 0 ) {
@@ -74,7 +73,10 @@ public class Main extends HttpServlet{
 			PostMutterLogic postMutterLogic = new PostMutterLogic();
 			postMutterLogic.execute( mutter , mutterList );
 			
-			application.setAttribute( "mutterList" , mutterList );	
+			application.setAttribute( "mutterList" , mutterList );
+			
+		}else {
+			request.setAttribute( "errorMsg", "つぶやきが入力されていません" );
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main.jsp");

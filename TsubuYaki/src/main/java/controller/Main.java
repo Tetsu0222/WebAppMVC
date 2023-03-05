@@ -3,6 +3,7 @@ package controller;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,25 +59,34 @@ public class Main extends HttpServlet {
     String text = request.getParameter("text");
 
     // 入力値チェック
-    if (text != null && text.length() != 0) {
+    if (text != null && text.length() != 0) { 
+    	
+    	
       // アプリケーションスコープに保存されたつぶやきリストを取得
       ServletContext application = this.getServletContext();
+      PostMutterLogic postMutterLogic = new PostMutterLogic();
+      List<Mutter> mutterList = postMutterLogic.executeSelect();
+
+	  //アンケートリストをリクエストスコープに保存
+	  //request.setAttribute( "mutterList" , mutterList );
+
       
-      
-      @SuppressWarnings("unchecked")
-	  List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+      //@SuppressWarnings("unchecked")
+	  //List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
 
       // セッションスコープに保存されたユーザー情報を取得
       HttpSession session = request.getSession();
       User loginUser = (User) session.getAttribute("loginUser");
 
       // つぶやきをつぶやきリストに追加
-      Mutter mutter = new Mutter(loginUser.getName(), text);
-      PostMutterLogic postMutterLogic = new PostMutterLogic();
-      postMutterLogic.execute(mutter, mutterList);
+      Mutter mutter = new Mutter(loginUser.getName(), text , new Timestamp(System.currentTimeMillis()) );
+      postMutterLogic.executeInsert( mutter );
 
       // アプリケーションスコープにつぶやきリストを保存
       application.setAttribute("mutterList", mutterList);
+      
+      
+      
     }else {
     	request.setAttribute("errorMsg", "つぶやきが入力されていません");
     }

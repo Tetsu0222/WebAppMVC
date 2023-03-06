@@ -43,7 +43,7 @@ public class ExecuteLogin extends HttpServlet {
 				String passWord = request.getParameter( "PASSWORD" );
 				
 				ExecuteLoginBL logic = new ExecuteLoginBL();
-				UserInfoDto    dto   = logic.executeSelectUserInfo( userId , passWord) ;
+				UserInfoDto    dto   = logic.executeSelectUserInfo( userId , passWord ) ;
 				
 				if  ( dto.getUserId() == null ) {
 					succesFlg = false ;

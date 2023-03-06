@@ -54,8 +54,8 @@
                     <input type="submit" class="button" value="送信" id="ID_SUBMIT">
                 </form>
                 <script type="text/javascript" src="Survey.js"></script> 
-            </div><!-- /.wrapper -->
-    </div><!-- /#contact -->
+            </div>
+    </div>
 
     <section id="location">
         <div class="wrapper">

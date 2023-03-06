@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List"      %>
-<%@ page import="model.ShinrinDto"    %>
-
-<%
-List<ShinrinDto> surveyDtoList = (List<ShinrinDto>)request.getAttribute("shinrinDtoList");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
   <head>
@@ -22,19 +15,14 @@ List<ShinrinDto> surveyDtoList = (List<ShinrinDto>)request.getAttribute("shinrin
         <th>回答時間</th>
       </tr>
 
-<%
-for (int i = 0; i < surveyDtoList.size(); i++) {
-	ShinrinDto dto = surveyDtoList.get( i );
-%>
+<c:forEach var="dto" items="${shinrinDtoList}">
       <tr>
-        <td><%= dto.getName() %></td>
-        <td><%= dto.getMail() %></td>
-        <td><%= dto.getMessage() %></td>
-        <td><%= dto.getTime() %></td>
+        <td><c:out value="${ dto.name    }" /></td>
+        <td><c:out value="${ dto.email   }" /></td>
+        <td><c:out value="${ dto.message }" /></td>
+        <td><c:out value="${ dto.time    }" /></td>
       </tr>
-<%
-}
-%>
+</c:forEach>
     </table>
     <br>
     <form action="<%=request.getContextPath()%>/ExecuteLogout" method="post">

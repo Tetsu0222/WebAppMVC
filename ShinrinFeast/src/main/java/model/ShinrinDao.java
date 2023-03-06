@@ -67,7 +67,7 @@ public class ShinrinDao {
 	}
 	
 	
-	public List<ShinrinDto> doSelect( String sl ) {
+	public List<ShinrinDto> doSelect(){
 		
 		List<ShinrinDto> selectDataList = new ArrayList<ShinrinDto>();
 

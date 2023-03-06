@@ -28,9 +28,6 @@ public class SurveyByQuestionnaire extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-
 		String name       = request.getParameter( "NAME"    );
 		String mail       = request.getParameter( "EMAIL"   ); 
 		String message    = request.getParameter( "MESSAGE" );
@@ -44,7 +41,7 @@ public class SurveyByQuestionnaire extends HttpServlet {
 		BusinessLogic logic  = new BusinessLogic();
 		boolean succesInsert = logic.executeInsertSurvey( dto );
 
-		if (succesInsert) {
+		if ( succesInsert ) {
 			response.sendRedirect( "view/finish.html" );
 			
 		} else {

@@ -24,11 +24,9 @@ public class ShowSurveyByMessege extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String receive = request.getParameter( "LOGIN" );
-
 		List<ShinrinDto> shinrinDtoList = new ArrayList<ShinrinDto>();                      
 		BusinessLogic   logic           = new BusinessLogic();
-		shinrinDtoList = logic.executeSelect( receive );
+		shinrinDtoList = logic.executeSelect();
 
 		request.setAttribute( "shinrinDtoList" , shinrinDtoList );
 

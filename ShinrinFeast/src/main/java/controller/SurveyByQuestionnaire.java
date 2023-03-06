@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.BusinessLogic;
 import model.ShinrinDto;
 
+
+
 public class SurveyByQuestionnaire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,23 +31,25 @@ public class SurveyByQuestionnaire extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 
-		String name              = request.getParameter("NAME");
-		String mail              = request.getParameter("EMAIL"); 
-		String message           = request.getParameter("MESSAGE");
+		String name       = request.getParameter( "NAME"    );
+		String mail       = request.getParameter( "EMAIL"   ); 
+		String message    = request.getParameter( "MESSAGE" );
 
 		ShinrinDto dto = new ShinrinDto();
-		dto.setName( name );
-		dto.setMail( mail );
+		dto.setName   ( name    );
+		dto.setMail   ( mail    );
 		dto.setMessage( message );
-		dto.setTime( new Timestamp(System.currentTimeMillis()) );
+		dto.setTime   ( new Timestamp( System.currentTimeMillis() ) );
 
-		BusinessLogic logic = new BusinessLogic();
-		boolean succesInsert = logic.executeInsertSurvey(dto);
+		BusinessLogic logic  = new BusinessLogic();
+		boolean succesInsert = logic.executeInsertSurvey( dto );
 
 		if (succesInsert) {
-			response.sendRedirect("view/finish.html");
+			response.sendRedirect( "view/finish.html" );
+			
 		} else {
-			response.sendRedirect("view/error.html");
+			response.sendRedirect( "view/error.html" );
+			
 		}
 	}
 }

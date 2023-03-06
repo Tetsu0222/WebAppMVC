@@ -1,9 +1,13 @@
 package model;
 
-public class UserInfoDto {
-	private String userId;
-	private String userName;
-	private String passWord;
+import java.io.Serializable;
+
+public class UserInfoDto implements Serializable{
+	private String userId   ;
+	private String userName ;
+	private String passWord ;
+	
+	public UserInfoDto() {}
 
 	public String getUserId() { return userId; }
 	public void setUserId(String userId) { this.userId = userId; }

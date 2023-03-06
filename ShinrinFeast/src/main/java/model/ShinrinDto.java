@@ -1,13 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ShinrinDto {
+public class ShinrinDto implements Serializable{
 
 	private String    name   ;
 	private String    email  ;
 	private String    message;
 	private Timestamp time   ;
+	
+	public ShinrinDto() {}
 
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }

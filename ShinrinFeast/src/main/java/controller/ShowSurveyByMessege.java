@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BusinessLogic;
 import model.ShinrinDto;
 
+
 public class ShowSurveyByMessege extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,23 +24,21 @@ public class ShowSurveyByMessege extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String receivePrmSatLv     = request.getParameter("SATISFACTION_LEVEL");
+		String receive = request.getParameter( "LOGIN" );
 
-		List<ShinrinDto> surveyDtoList = new ArrayList<ShinrinDto>();                      
-		BusinessLogic   logic         = new BusinessLogic();
-		surveyDtoList = logic.executeSelectSurveyBySatisfactionLevel( receivePrmSatLv );
+		List<ShinrinDto> shinrinDtoList = new ArrayList<ShinrinDto>();                      
+		BusinessLogic   logic           = new BusinessLogic();
+		shinrinDtoList = logic.executeSelect( receive );
 
-		//アンケートリストをリクエストスコープに保存
-		request.setAttribute( "SURVEY_LIST_BY_SATISFACTION_LEVEL" , surveyDtoList );
+		request.setAttribute( "shinrinDtoList" , shinrinDtoList );
 
-		//Viewにフォワード（フォワード先：show_survey_by_satisfaction_level.jsp）
-		RequestDispatcher dispatch = request.getRequestDispatcher("view/show_survey_by_satisfaction_level.jsp");
-		dispatch.forward(request, response);
+		RequestDispatcher dispatch = request.getRequestDispatcher( "view/show_by_message.jsp" );
+		dispatch.forward ( request , response );
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		doGet( request , response );
 	}
 }

@@ -1,21 +1,14 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessLogic {
 	
-	public boolean executeInsertSurvey(ShinrinDto dto) {
-		boolean   succesInsert = false ;
-		ShinrinDao dao = new ShinrinDao();
-		succesInsert = dao.doInsert(dto);
-		return succesInsert;
+	public boolean executeInsertSurvey( ShinrinDto dto ) {
+		return new ShinrinDao().doInsert( dto );
 	}
 	
-	public List<ShinrinDto> executeSelectSurveyBySatisfactionLevel( String sl ) {
-		List<ShinrinDto> surveyList = new ArrayList<ShinrinDto>();
-		ShinrinDao dao = new ShinrinDao();
-		surveyList = dao.doSelectBySatisfactionLevel( sl );
-		return surveyList;
+	public List<ShinrinDto> executeSelect( String receive ) {
+		return new ShinrinDao().doSelect( receive );
 	}
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import model.UserInfoDto;
 
 
+
 public class ExecuteLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +19,7 @@ public class ExecuteLogout extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
 
 		response.setContentType( "text/html;charset=UTF-8" );
@@ -28,6 +29,7 @@ public class ExecuteLogout extends HttpServlet {
 		if ( userInfoOnSession != null ) {
 			session.invalidate();
 			response.sendRedirect( "view/Logout.html" );
+			
 		} else {
 			response.sendRedirect( "view/Login.html"  );
 		}
